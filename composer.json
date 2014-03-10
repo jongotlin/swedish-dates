@@ -1,0 +1,20 @@
+{
+    "name": "jgi/swedish-dates",
+    "description": "Special dates in Sweden",
+    "keywords": ["date", "sweden"],
+    "license": "Apache2",
+    "authors": [
+        {
+            "name": "Jon Gotlin",
+            "email": "jon@jon.se"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JGI\\SwedishDates\\": "src/JGI/SwedishDates/"
+        }
+    }
+}
