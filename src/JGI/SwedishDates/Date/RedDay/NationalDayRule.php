@@ -10,7 +10,7 @@ class NationalDayRule implements RedDayRuleInterface
     public function isRedDay(\DateTime $datetime)
     {
         if (intval($datetime->format('Y')) >= 2005) {
-            return '6' == $datetime->format('m') && '6' == $datetime->format('d');
+            return '6' == $datetime->format('n') && '6' == $datetime->format('j');
         }
 
         return false;
