@@ -11,10 +11,10 @@ class NewYearsDayRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function newYearsDayIsRed()
     {
-        $sundayRule = new NewYearsDayRule();
+        $rule = new NewYearsDayRule();
 
-        $this->assertTrue($sundayRule->isRedDay(new \DateTime('2000-01-01')));
-        $this->assertTrue($sundayRule->isRedDay(new \DateTime('2014-01-01')));
+        $this->assertTrue($rule->isRedDay(new \DateTime('2000-01-01')));
+        $this->assertTrue($rule->isRedDay(new \DateTime('2014-01-01')));
     }
 
     /**
@@ -22,10 +22,10 @@ class NewYearsDayRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function nonNewYearsDaysAreNotRed()
     {
-        $sundayRule = new NewYearsDayRule();
+        $rule = new NewYearsDayRule();
 
-        $this->assertFalse($sundayRule->isRedDay(new \DateTime('1999-12-31')));
-        $this->assertFalse($sundayRule->isRedDay(new \DateTime('2000-01-02')));
-        $this->assertFalse($sundayRule->isRedDay(new \DateTime('2014-02-01')));
+        $this->assertFalse($rule->isRedDay(new \DateTime('1999-12-31')));
+        $this->assertFalse($rule->isRedDay(new \DateTime('2000-01-02')));
+        $this->assertFalse($rule->isRedDay(new \DateTime('2014-02-01')));
     }
 }

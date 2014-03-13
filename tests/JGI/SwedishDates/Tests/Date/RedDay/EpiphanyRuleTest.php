@@ -11,10 +11,10 @@ class EpiphanyRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function epiphanyIsRed()
     {
-        $sundayRule = new EpiphanyRule();
+        $rule = new EpiphanyRule();
 
-        $this->assertTrue($sundayRule->isRedDay(new \DateTime('2000-01-06')));
-        $this->assertTrue($sundayRule->isRedDay(new \DateTime('2014-01-06')));
+        $this->assertTrue($rule->isRedDay(new \DateTime('2000-01-06')));
+        $this->assertTrue($rule->isRedDay(new \DateTime('2014-01-06')));
     }
 
     /**
@@ -22,10 +22,10 @@ class EpiphanyRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function nonEphiphanyDaysAreNotRed()
     {
-        $sundayRule = new EpiphanyRule();
+        $rule = new EpiphanyRule();
 
-        $this->assertFalse($sundayRule->isRedDay(new \DateTime('1014-01-05')));
-        $this->assertFalse($sundayRule->isRedDay(new \DateTime('1014-01-07')));
-        $this->assertFalse($sundayRule->isRedDay(new \DateTime('2014-06-01')));
+        $this->assertFalse($rule->isRedDay(new \DateTime('1014-01-05')));
+        $this->assertFalse($rule->isRedDay(new \DateTime('1014-01-07')));
+        $this->assertFalse($rule->isRedDay(new \DateTime('2014-06-01')));
     }
 }

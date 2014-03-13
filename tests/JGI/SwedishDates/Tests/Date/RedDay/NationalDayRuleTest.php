@@ -11,11 +11,11 @@ class NationalDayRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function nationalDayIsRed()
     {
-        $sundayRule = new NationalDayRule();
+        $rule = new NationalDayRule();
 
-        $this->assertTrue($sundayRule->isRedDay(new \DateTime('2005-06-06')));
-        $this->assertTrue($sundayRule->isRedDay(new \DateTime('2010-06-06')));
-        $this->assertTrue($sundayRule->isRedDay(new \DateTime('2014-06-06')));
+        $this->assertTrue($rule->isRedDay(new \DateTime('2005-06-06')));
+        $this->assertTrue($rule->isRedDay(new \DateTime('2010-06-06')));
+        $this->assertTrue($rule->isRedDay(new \DateTime('2014-06-06')));
     }
 
     /**
@@ -23,12 +23,12 @@ class NationalDayRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function nonNationalDaysAreNotRed()
     {
-        $sundayRule = new NationalDayRule();
+        $rule = new NationalDayRule();
 
-        $this->assertFalse($sundayRule->isRedDay(new \DateTime('2004-06-06')));
-        $this->assertFalse($sundayRule->isRedDay(new \DateTime('2014-01-06')));
-        $this->assertFalse($sundayRule->isRedDay(new \DateTime('2014-06-07')));
-        $this->assertFalse($sundayRule->isRedDay(new \DateTime('2014-06-18')));
-        $this->assertFalse($sundayRule->isRedDay(new \DateTime('2014-12-24')));
+        $this->assertFalse($rule->isRedDay(new \DateTime('2004-06-06')));
+        $this->assertFalse($rule->isRedDay(new \DateTime('2014-01-06')));
+        $this->assertFalse($rule->isRedDay(new \DateTime('2014-06-07')));
+        $this->assertFalse($rule->isRedDay(new \DateTime('2014-06-18')));
+        $this->assertFalse($rule->isRedDay(new \DateTime('2014-12-24')));
     }
 }
