@@ -10,7 +10,7 @@ class AscensionDayRuleTest extends \PHPUnit_Framework_TestCase
      * @test
      * @dataProvider ascensionDaysProvider
      */
-    public function ascensionDaysAreRed($date)
+    public function ascensionDayIsRed($date)
     {
         $rule = new AscensionDayRule();
 
@@ -20,7 +20,7 @@ class AscensionDayRuleTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function nonAscensionDaysAreNotRed()
+    public function nonAscensionDayIsNotRed()
     {
         $rule = new AscensionDayRule();
 

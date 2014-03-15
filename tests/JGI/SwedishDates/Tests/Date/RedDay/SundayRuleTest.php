@@ -9,7 +9,7 @@ class SundayRuleTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function sundaysAreRed()
+    public function sundayIsRed()
     {
         $rule = new SundayRule();
 
@@ -20,7 +20,7 @@ class SundayRuleTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function nonSundaysAreNotRed()
+    public function nonSundayIsNotRed()
     {
         $rule = new SundayRule();
 

@@ -21,7 +21,7 @@ class EasterMondayRuleTest extends \PHPUnit_Framework_TestCase
      * @test
      * @dataProvider nonEasterMondaysProvider
      */
-    public function nonEasterMondayDaysAreNotRed($date)
+    public function nonEasterMondayIsNotRed($date)
     {
         $rule = new EasterMondayRule();
 

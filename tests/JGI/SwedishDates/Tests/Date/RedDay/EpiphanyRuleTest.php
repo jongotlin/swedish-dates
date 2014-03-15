@@ -20,7 +20,7 @@ class EpiphanyRuleTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function nonEphiphanyDaysAreNotRed()
+    public function nonEphiphanyIsNotRed()
     {
         $rule = new EpiphanyRule();
 

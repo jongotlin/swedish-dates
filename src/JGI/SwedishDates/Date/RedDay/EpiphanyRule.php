@@ -2,6 +2,7 @@
 
 namespace JGI\SwedishDates\Date\RedDay;
 
+//Trettondagen
 class EpiphanyRule implements RedDayRuleInterface
 {
     /**

@@ -21,7 +21,7 @@ class GoodFridayRuleTest extends \PHPUnit_Framework_TestCase
      * @test
      * @dataProvider nonGoodFridayDaysProvider
      */
-    public function nonGoodFridayDaysAreNotRed($date)
+    public function nonGoodFridayIsNotRed($date)
     {
         $rule = new GoodFridayRule();
 

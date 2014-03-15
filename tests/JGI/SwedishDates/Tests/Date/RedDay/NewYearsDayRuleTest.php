@@ -20,7 +20,7 @@ class NewYearsDayRuleTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function nonNewYearsDaysAreNotRed()
+    public function nonNewYearsDayIsNotRed()
     {
         $rule = new NewYearsDayRule();
 

@@ -21,7 +21,7 @@ class NationalDayRuleTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function nonNationalDaysAreNotRed()
+    public function nonNationalDayIsNotRed()
     {
         $rule = new NationalDayRule();
 

@@ -20,7 +20,7 @@ class FirstOfMayRuleTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function nonFirstOfMayDaysAreNotRed()
+    public function nonFirstOfMayIsNotRed()
     {
         $rule = new FirstOfMayRule();
 
