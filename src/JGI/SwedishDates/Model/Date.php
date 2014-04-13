@@ -15,12 +15,18 @@ class Date
     protected $redDay;
 
     /**
+     * @var string|null
+     */
+    protected $name;
+
+    /**
      * @param \DateTime $dateTime
      */
     public function __construct(\DateTime $dateTime)
     {
         $this->dateTime = $dateTime;
         $this->redDay = false;
+        $this->name = null;
     }
 
     /**
@@ -45,5 +51,21 @@ class Date
     public function getDateTime()
     {
         return $this->dateTime;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param null|string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 }
