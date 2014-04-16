@@ -2,25 +2,22 @@
 
 namespace JGI\SwedishDates\Manager;
 
-use JGI\SwedishDates\Date\Name\NameChain;
+use JGI\SwedishDates\Date\DayChain;
 use JGI\SwedishDates\Model\Date;
-use JGI\SwedishDates\Date\RedDay\RedDayChain;
 
 class DateManager
 {
     /**
-     * @var \JGI\SwedishDates\Date\RedDay\RedDayChain
+     * @var \JGI\SwedishDates\Date\DayChain
      */
-    protected $redDayChain;
+    protected $dayChain;
 
     /**
-     * @param \JGI\SwedishDates\Date\RedDay\RedDayChain $redDayChain
-     * @param \JGI\SwedishDates\Date\Name\NameChain $nameChain
+     * @param \JGI\SwedishDates\Date\DayChain $dayChain
      */
-    public function __construct(RedDayChain $redDayChain, NameChain $nameChain)
+    public function __construct(DayChain $dayChain)
     {
-        $this->redDayChain = $redDayChain;
-        $this->nameChain = $nameChain;
+        $this->dayChain = $dayChain;
     }
 
     /**
@@ -31,8 +28,7 @@ class DateManager
     public function getDate(\DateTime $dateTime)
     {
         $date = new Date($dateTime);
-        $this->loadRedDay($date);
-        $this->loadName($date);
+        $this->loadDay($date);
 
         return $date;
     }
@@ -40,24 +36,13 @@ class DateManager
     /**
      * @param \JGI\SwedishDates\Model\Date $date
      */
-    protected function loadRedDay(Date $date)
+    protected function loadDay(Date $date)
     {
-        foreach ($this->redDayChain->getRedDayRules() as $rule) {
-            if ($rule->isRedDay($date->getDateTime())) {
-                $date->setRedDay(true);
-                return;
-            }
-        }
-    }
+        foreach ($this->dayChain->getDays() as $day) {
+            if ($day->match($date->getDateTime())) {
+                $date->setRedDay($day->isRed());
+                $date->setName($day->getName());
 
-    /**
-     * @param \JGI\SwedishDates\Model\Date $date
-     */
-    protected function loadName(Date $date)
-    {
-        foreach ($this->nameChain->getNames() as $name) {
-            if (!is_null($name)) {
-                $date->setName($name->getName($date->getDateTime()));
                 return;
             }
         }

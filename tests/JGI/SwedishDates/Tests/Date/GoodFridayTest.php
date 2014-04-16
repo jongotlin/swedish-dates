@@ -1,10 +1,10 @@
 <?php
 
-namespace JGI\SwedishDates\Tests\Date\RedDay;
+namespace JGI\SwedishDates\Tests\Date;
 
-use JGI\SwedishDates\Date\RedDay\GoodFridayRule;
+use JGI\SwedishDates\Date\GoodFriday;
 
-class GoodFridayRuleTest extends \PHPUnit_Framework_TestCase
+class GoodFridayTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
@@ -12,9 +12,9 @@ class GoodFridayRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function goodFridayIsRed($date)
     {
-        $rule = new GoodFridayRule();
+        $goodFriday = new GoodFriday();
 
-        $this->assertTrue($rule->isRedDay(new \DateTime($date)));
+        $this->assertTrue($goodFriday->match(new \DateTime($date)));
     }
 
     /**
@@ -23,9 +23,9 @@ class GoodFridayRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function nonGoodFridayIsNotRed($date)
     {
-        $rule = new GoodFridayRule();
+        $goodFriday = new GoodFriday();
 
-        $this->assertFalse($rule->isRedDay(new \DateTime($date)));
+        $this->assertFalse($goodFriday->match(new \DateTime($date)));
     }
 
     /**

@@ -1,10 +1,10 @@
 <?php
 
-namespace JGI\SwedishDates\Tests\Date\RedDay;
+namespace JGI\SwedishDates\Tests\Date;
 
-use JGI\SwedishDates\Date\RedDay\EasterSundayRule;
+use JGI\SwedishDates\Date\EasterSunday;
 
-class EasterSundayRuleTest extends \PHPUnit_Framework_TestCase
+class EasterSundayTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
@@ -12,9 +12,9 @@ class EasterSundayRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function easterSundayIsRed($date)
     {
-        $rule = new EasterSundayRule();
+        $easterSunday = new EasterSunday();
 
-        $this->assertTrue($rule->isRedDay(new \DateTime($date)));
+        $this->assertTrue($easterSunday->match(new \DateTime($date)));
     }
 
     /**
@@ -23,9 +23,9 @@ class EasterSundayRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function nonEasterSundayIsNotRed($date)
     {
-        $rule = new EasterSundayRule();
+        $easterSunday = new EasterSunday();
 
-        $this->assertFalse($rule->isRedDay(new \DateTime($date)));
+        $this->assertFalse($easterSunday->match(new \DateTime($date)));
     }
 
     /**

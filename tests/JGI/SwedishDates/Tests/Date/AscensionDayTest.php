@@ -1,10 +1,10 @@
 <?php
 
-namespace JGI\SwedishDates\Tests\Date\RedDay;
+namespace JGI\SwedishDates\Tests\Date;
 
-use JGI\SwedishDates\Date\RedDay\AscensionDayRule;
+use JGI\SwedishDates\Date\AscensionDay;
 
-class AscensionDayRuleTest extends \PHPUnit_Framework_TestCase
+class AscensionDayTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
@@ -12,9 +12,9 @@ class AscensionDayRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function ascensionDayIsRed($date)
     {
-        $rule = new AscensionDayRule();
+        $ascensionDay = new AscensionDay();
 
-        $this->assertTrue($rule->isRedDay(new \DateTime($date)));
+        $this->assertTrue($ascensionDay->match(new \DateTime($date)));
     }
 
     /**
@@ -22,10 +22,10 @@ class AscensionDayRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function nonAscensionDayIsNotRed()
     {
-        $rule = new AscensionDayRule();
+        $ascensionDay = new AscensionDay();
 
-        $this->assertFalse($rule->isRedDay(new \DateTime('2014-05-28')));
-        $this->assertFalse($rule->isRedDay(new \DateTime('2014-05-30')));
+        $this->assertFalse($ascensionDay->match(new \DateTime('2014-05-28')));
+        $this->assertFalse($ascensionDay->match(new \DateTime('2014-05-30')));
     }
 
     /**

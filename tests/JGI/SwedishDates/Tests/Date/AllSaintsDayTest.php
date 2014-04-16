@@ -1,10 +1,10 @@
 <?php
 
-namespace JGI\SwedishDates\Tests\Date\RedDay;
+namespace JGI\SwedishDates\Tests\Date;
 
-use JGI\SwedishDates\Date\RedDay\AllSaintsDayRule;
+use JGI\SwedishDates\Date\AllSaintsDay;
 
-class AllSaintsDayRuleTest extends \PHPUnit_Framework_TestCase
+class AllSaintsDayTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
@@ -12,9 +12,9 @@ class AllSaintsDayRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function allSaintsDayIsRed($date)
     {
-        $rule = new AllSaintsDayRule();
+        $allSaintsDay = new AllSaintsDay();
 
-        $this->assertTrue($rule->isRedDay(new \DateTime($date)));
+        $this->assertTrue($allSaintsDay->match(new \DateTime($date)));
     }
 
     /**
@@ -23,9 +23,9 @@ class AllSaintsDayRuleTest extends \PHPUnit_Framework_TestCase
      */
     public function nonAllSaintsDayIsNotRed($date)
     {
-        $rule = new AllSaintsDayRule();
+        $allSaintsDay = new AllSaintsDay();
 
-        $this->assertFalse($rule->isRedDay(new \DateTime($date)));
+        $this->assertFalse($allSaintsDay->match(new \DateTime($date)));
     }
 
     /**
