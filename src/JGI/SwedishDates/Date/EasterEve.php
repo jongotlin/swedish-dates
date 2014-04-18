@@ -19,7 +19,7 @@ class EasterEve implements DayInterface
      */
     public function isRed()
     {
-        return true;
+        return false;
     }
 
     /**
