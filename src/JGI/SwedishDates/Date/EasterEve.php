@@ -2,14 +2,16 @@
 
 namespace JGI\SwedishDates\Date;
 
-class EasterSunday implements DayInterface
+class EasterEve implements DayInterface
 {
     /**
      * {@inheritdoc}
      */
     public function match(\DateTime $datetime)
     {
-        return date("Y-m-d", easter_date($datetime->format('Y'))) == $datetime->format('Y-m-d');
+        $datetime = clone $datetime;
+
+        return date("Y-m-d", easter_date($datetime->format('Y'))) == $datetime->modify('+1 day')->format('Y-m-d');
     }
 
     /**
@@ -25,6 +27,6 @@ class EasterSunday implements DayInterface
      */
     public function getName()
     {
-        return 'Påskdagen';
+        return 'Påskafton';
     }
 }
