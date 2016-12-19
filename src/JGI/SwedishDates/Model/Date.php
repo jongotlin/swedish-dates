@@ -38,7 +38,7 @@ class Date
     }
 
     /**
-     * @param bool redDay
+     * @param bool $redDay
      */
     public function setRedDay($redDay)
     {
