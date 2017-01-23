@@ -4,28 +4,33 @@ namespace JGI\SwedishDates\Tests\Date;
 
 use JGI\SwedishDates\Date\Epiphany;
 
-class EpiphanyTest extends \PHPUnit_Framework_TestCase
+class EpiphanyTest extends AbstractDayTest
 {
-    /**
-     * @test
-     */
-    public function epiphanyIsRed()
+    public function setUp()
     {
-        $epiphany = new Epiphany();
-
-        $this->assertTrue($epiphany->match(new \DateTime('2000-01-06')));
-        $this->assertTrue($epiphany->match(new \DateTime('2014-01-06')));
+        $this->day = new Epiphany();
     }
 
     /**
-     * @test
+     * @return array
      */
-    public function nonEphiphanyIsNotRed()
+    public function correctDaysProvider()
     {
-        $epiphany = new Epiphany();
+        return [
+            ['2000-01-06'],
+            ['2014-01-06'],
+        ];
+    }
 
-        $this->assertFalse($epiphany->match(new \DateTime('1014-01-05')));
-        $this->assertFalse($epiphany->match(new \DateTime('1014-01-07')));
-        $this->assertFalse($epiphany->match(new \DateTime('2014-06-01')));
+    /**
+     * @return array
+     */
+    public function incorrectDaysProvider()
+    {
+        return [
+            ['2014-01-05'],
+            ['2014-01-07'],
+            ['2014-06-01'],
+        ];
     }
 }

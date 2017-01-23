@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types=1);
+
 namespace JGI\SwedishDates\Date;
 
 interface DayInterface
@@ -9,5 +11,5 @@ interface DayInterface
      *
      * @return bool
      */
-    public function match(\DateTime $datetime);
+    public function match(\DateTime $datetime): bool;
 }

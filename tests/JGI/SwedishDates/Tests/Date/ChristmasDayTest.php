@@ -4,30 +4,34 @@ namespace JGI\SwedishDates\Tests\Date;
 
 use JGI\SwedishDates\Date\ChristmasDay;
 
-class ChristmasDayTest extends \PHPUnit_Framework_TestCase
+class ChristmasDayTest extends AbstractDayTest
 {
-    /**
-     * @test
-     */
-    public function christmasDayIsRed()
+    public function setUp()
     {
-        $christmasDay = new ChristmasDay();
-
-        $this->assertTrue($christmasDay->match(new \DateTime('2014-12-25')));
-        $this->assertTrue($christmasDay->match(new \DateTime('1999-12-25')));
+        $this->day = new ChristmasDay();
     }
 
     /**
-     * @test
+     * @return array
      */
-    public function nonChristmasDaysAreNotRed()
+    public function correctDaysProvider()
     {
-        $christmasDay = new ChristmasDay();
-
-        $this->assertFalse($christmasDay->match(new \DateTime('2014-11-24')));
-        $this->assertFalse($christmasDay->match(new \DateTime('2014-12-26')));
-        $this->assertFalse($christmasDay->match(new \DateTime('2014-12-27')));
-        $this->assertFalse($christmasDay->match(new \DateTime('2014-12-31')));
+        return [
+            ['2014-12-25'],
+            ['1999-12-25'],
+        ];
     }
 
+    /**
+     * @return array
+     */
+    public function incorrectDaysProvider()
+    {
+        return [
+            ['2014-11-24'],
+            ['2014-12-26'],
+            ['2014-12-27'],
+            ['2014-12-31'],
+        ];
+    }
 }

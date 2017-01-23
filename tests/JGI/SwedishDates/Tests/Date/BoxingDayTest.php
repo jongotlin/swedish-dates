@@ -4,30 +4,34 @@ namespace JGI\SwedishDates\Tests\Date;
 
 use JGI\SwedishDates\Date\BoxingDay;
 
-class BoxingDayTest extends \PHPUnit_Framework_TestCase
+class BoxingDayTest extends AbstractDayTest
 {
-    /**
-     * @test
-     */
-    public function boxingDayIsRed()
+    public function setUp()
     {
-        $boxingDay = new BoxingDay();
-
-        $this->assertTrue($boxingDay->match(new \DateTime('2014-12-26')));
-        $this->assertTrue($boxingDay->match(new \DateTime('1999-12-26')));
+        $this->day = new BoxingDay();;
     }
 
     /**
-     * @test
+     * @return array
      */
-    public function nonBoxingDaysAreNotRed()
+    public function correctDaysProvider()
     {
-        $boxingDay = new BoxingDay();
-
-        $this->assertFalse($boxingDay->match(new \DateTime('2014-11-24')));
-        $this->assertFalse($boxingDay->match(new \DateTime('2014-12-25')));
-        $this->assertFalse($boxingDay->match(new \DateTime('2014-12-27')));
-        $this->assertFalse($boxingDay->match(new \DateTime('2014-12-31')));
+        return [
+            ['2014-12-26'],
+            ['1999-12-26'],
+        ];
     }
 
+    /**
+     * @return array
+     */
+    public function incorrectDaysProvider()
+    {
+        return [
+            ['2014-11-24'],
+            ['2014-12-25'],
+            ['2014-12-27'],
+            ['2014-12-31'],
+        ];
+    }
 }

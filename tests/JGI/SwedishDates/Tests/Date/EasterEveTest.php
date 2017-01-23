@@ -4,34 +4,17 @@ namespace JGI\SwedishDates\Tests\Date;
 
 use JGI\SwedishDates\Date\EasterEve;
 
-class EasterEveTest extends \PHPUnit_Framework_TestCase
+class EasterEveTest extends AbstractDayTest
 {
-    /**
-     * @test
-     * @dataProvider easterEveProvider
-     */
-    public function isEasterEve($date)
+    public function setUp()
     {
-        $easterEve = new EasterEve();
-
-        $this->assertTrue($easterEve->match(new \DateTime($date)));
-    }
-
-    /**
-     * @test
-     * @dataProvider notEasterEveProvider
-     */
-    public function isNotEasterEve($date)
-    {
-        $easterEve = new EasterEve();
-
-        $this->assertFalse($easterEve->match(new \DateTime($date)));
+        $this->day = new EasterEve();
     }
 
     /**
      * @return array
      */
-    public function easterEveProvider()
+    public function correctDaysProvider()
     {
         return [
             ['2014-04-19'],
@@ -42,7 +25,7 @@ class EasterEveTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public function notEasterEveProvider()
+    public function incorrectDaysProvider()
     {
         return [
             ['2014-04-18'],

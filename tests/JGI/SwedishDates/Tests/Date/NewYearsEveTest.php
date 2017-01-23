@@ -4,28 +4,33 @@ namespace JGI\SwedishDates\Tests\Date;
 
 use JGI\SwedishDates\Date\NewYearsEve;
 
-class NewYearsEveTest extends \PHPUnit_Framework_TestCase
+class NewYearsEveTest extends AbstractDayTest
 {
-    /**
-     * @test
-     */
-    public function newYearsEveIsMatched()
+    public function setUp()
     {
-        $newYearsEve = new NewYearsEve();
-
-        $this->assertTrue($newYearsEve->match(new \DateTime('2000-12-31')));
-        $this->assertTrue($newYearsEve->match(new \DateTime('2014-12-31')));
+        $this->day = new NewYearsEve();
     }
 
     /**
-     * @test
+     * @return array
      */
-    public function nonNewYearsEveIsNotMatched()
+    public function correctDaysProvider()
     {
-        $newYearsEve = new NewYearsEve();
+        return [
+            ['2000-12-31'],
+            ['2014-12-31'],
+        ];
+    }
 
-        $this->assertFalse($newYearsEve->match(new \DateTime('1999-01-31')));
-        $this->assertFalse($newYearsEve->match(new \DateTime('2000-01-01')));
-        $this->assertFalse($newYearsEve->match(new \DateTime('2014-12-30')));
+    /**
+     * @return array
+     */
+    public function incorrectDaysProvider()
+    {
+        return [
+            ['1999-01-31'],
+            ['2000-01-01'],
+            ['2014-12-30'],
+        ];
     }
 }

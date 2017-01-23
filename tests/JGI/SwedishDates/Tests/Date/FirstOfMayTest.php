@@ -4,28 +4,33 @@ namespace JGI\SwedishDates\Tests\Date;
 
 use JGI\SwedishDates\Date\FirstOfMay;
 
-class FirstOfMayTest extends \PHPUnit_Framework_TestCase
+class FirstOfMayTest extends AbstractDayTest
 {
-    /**
-     * @test
-     */
-    public function firstOfMayIsRed()
+    public function setUp()
     {
-        $firstOfMay = new FirstOfMay();
-
-        $this->assertTrue($firstOfMay->match(new \DateTime('2000-05-01')));
-        $this->assertTrue($firstOfMay->match(new \DateTime('2014-05-01')));
+        $this->day = new FirstOfMay();
     }
 
     /**
-     * @test
+     * @return array
      */
-    public function nonFirstOfMayIsNotRed()
+    public function correctDaysProvider()
     {
-        $firstOfMay = new FirstOfMay();
+        return [
+            ['2000-05-01'],
+            ['2014-05-01'],
+        ];
+    }
 
-        $this->assertFalse($firstOfMay->match(new \DateTime('1014-05-05')));
-        $this->assertFalse($firstOfMay->match(new \DateTime('1014-01-05')));
-        $this->assertFalse($firstOfMay->match(new \DateTime('2014-06-01')));
+    /**
+     * @return array
+     */
+    public function incorrectDaysProvider()
+    {
+        return [
+            ['2014-05-05'],
+            ['2014-01-05'],
+            ['2014-06-01'],
+        ];
     }
 }

@@ -1,29 +1,23 @@
 <?php
 
+declare (strict_types=1);
+
 namespace JGI\SwedishDates\Date;
 
-class MidsummerEve implements DayInterface
+class MidsummerEve implements DayInterface, DayOccurOnceAYearInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function match(\DateTime $datetime)
+    public function match(\DateTime $datetime): bool
     {
-        foreach (range(0, 6) as $i) {
-            $tempDatetime = new \DateTime(sprintf('%s-06-19', $datetime->format('Y')));
-            $tempDatetime->modify(sprintf('+%d day', $i));
-            if ('5' == $tempDatetime->format('N') && $tempDatetime->format('Y-m-d') == $datetime->format('Y-m-d')) {
-                return true;
-            }
-        }
-
-        return false;
+        return $this->getDateForYear((int) $datetime->format('Y'))->format('Y-m-d') == $datetime->format('Y-m-d');
     }
 
     /**
      * {@inheritdoc}
      */
-    public function isRed()
+    public function isRed(): bool
     {
         return false;
     }
@@ -31,8 +25,22 @@ class MidsummerEve implements DayInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'Midsommarafton';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDateForYear(int $year)
+    {
+        foreach (range(0, 6) as $i) {
+            $datetime = new \DateTime(sprintf('%s-06-19', $year));
+            $datetime->modify(sprintf('+%d day', $i));
+            if ('5' == $datetime->format('N')) {
+                return $datetime;
+            }
+        }
     }
 }
