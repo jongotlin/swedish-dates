@@ -4,34 +4,17 @@ namespace JGI\SwedishDates\Tests\Date;
 
 use JGI\SwedishDates\Date\EasterSunday;
 
-class EasterSundayTest extends \PHPUnit_Framework_TestCase
+class EasterSundayTest extends AbstractDayTest
 {
-    /**
-     * @test
-     * @dataProvider easterSundaysProvider
-     */
-    public function easterSundayIsRed($date)
+    public function setUp()
     {
-        $easterSunday = new EasterSunday();
-
-        $this->assertTrue($easterSunday->match(new \DateTime($date)));
-    }
-
-    /**
-     * @test
-     * @dataProvider nonEasterSundaysProvider
-     */
-    public function nonEasterSundayIsNotRed($date)
-    {
-        $easterSunday = new EasterSunday();
-
-        $this->assertFalse($easterSunday->match(new \DateTime($date)));
+        $this->day = new EasterSunday();
     }
 
     /**
      * @return array
      */
-    public function easterSundaysProvider()
+    public function correctDaysProvider()
     {
         return [
             ['2014-04-20'],
@@ -51,7 +34,7 @@ class EasterSundayTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public function nonEasterSundaysProvider()
+    public function incorrectDaysProvider()
     {
         return [
             ['2014-04-18'],

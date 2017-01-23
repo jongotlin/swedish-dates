@@ -1,21 +1,23 @@
 <?php
 
+declare (strict_types=1);
+
 namespace JGI\SwedishDates\Date;
 
-class BoxingDay implements DayInterface
+class BoxingDay implements DayInterface, DayOccurOnceAYearInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function match(\DateTime $datetime)
+    public function match(\DateTime $datetime): bool
     {
-        return '12' == $datetime->format('n') && '26' == $datetime->format('j');
+        return $this->getDateForYear((int) $datetime->format('Y'))->format('Y-m-d') == $datetime->format('Y-m-d');
     }
 
     /**
      * {@inheritdoc}
      */
-    public function isRed()
+    public function isRed(): bool
     {
         return true;
     }
@@ -23,8 +25,16 @@ class BoxingDay implements DayInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'Annandag jul';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDateForYear(int $year)
+    {
+        return new \DateTime(sprintf('%s-12-26', $year));
     }
 }

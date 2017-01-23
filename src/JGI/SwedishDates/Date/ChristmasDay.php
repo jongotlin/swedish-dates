@@ -1,21 +1,23 @@
 <?php
 
+declare (strict_types=1);
+
 namespace JGI\SwedishDates\Date;
 
-class ChristmasDay implements DayInterface
+class ChristmasDay implements DayInterface, DayOccurOnceAYearInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function match(\DateTime $datetime)
+    public function match(\DateTime $datetime): bool
     {
-        return '12' == $datetime->format('n') && '25' == $datetime->format('j');
+        return $this->getDateForYear((int) $datetime->format('Y'))->format('Y-m-d') == $datetime->format('Y-m-d');
     }
 
     /**
      * {@inheritdoc}
      */
-    public function isRed()
+    public function isRed(): bool
     {
         return true;
     }
@@ -23,8 +25,16 @@ class ChristmasDay implements DayInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'Juldagen';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDateForYear(int $year)
+    {
+        return new \DateTime(sprintf('%s-12-25', $year));
     }
 }

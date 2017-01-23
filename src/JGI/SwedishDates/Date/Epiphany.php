@@ -1,21 +1,23 @@
 <?php
 
+declare (strict_types=1);
+
 namespace JGI\SwedishDates\Date;
 
-class Epiphany implements DayInterface
+class Epiphany implements DayInterface, DayOccurOnceAYearInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function match(\DateTime $datetime)
+    public function match(\DateTime $datetime): bool
     {
-        return '1' == $datetime->format('n') && '6' == $datetime->format('j');
+        return $this->getDateForYear((int) $datetime->format('Y'))->format('Y-m-d') == $datetime->format('Y-m-d');
     }
 
     /**
      * {@inheritdoc}
      */
-    public function isRed()
+    public function isRed(): bool
     {
         return true;
     }
@@ -23,8 +25,16 @@ class Epiphany implements DayInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'Trettondagen';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDateForYear(int $year)
+    {
+        return new \DateTime(sprintf('%s-01-06', $year));
     }
 }

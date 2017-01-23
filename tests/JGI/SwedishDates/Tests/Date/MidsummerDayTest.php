@@ -4,29 +4,34 @@ namespace JGI\SwedishDates\Tests\Date;
 
 use JGI\SwedishDates\Date\MidsummerDay;
 
-class MidsummerDayTest extends \PHPUnit_Framework_TestCase
+class MidsummerDayTest extends AbstractDayTest
 {
-    /**
-     * @test
-     */
-    public function midsummerDayIsMatched()
+    public function setUp()
     {
-        $midsummerDay = new MidsummerDay();
-
-        $this->assertTrue($midsummerDay->match(new \DateTime('2000-06-24')));
-        $this->assertTrue($midsummerDay->match(new \DateTime('2015-06-20')));
-        $this->assertTrue($midsummerDay->match(new \DateTime('2016-06-25')));
+        $this->day = new MidsummerDay();
     }
 
     /**
-     * @test
+     * @return array
      */
-    public function nonMidsummerDayIsNotMatched()
+    public function correctDaysProvider()
     {
-        $midsummerDay = new MidsummerDay();
+        return [
+            ['2000-06-24'],
+            ['2015-06-20'],
+            ['2016-06-25'],
+        ];
+    }
 
-        $this->assertFalse($midsummerDay->match(new \DateTime('2000-06-23')));
-        $this->assertFalse($midsummerDay->match(new \DateTime('2000-06-25')));
-        $this->assertFalse($midsummerDay->match(new \DateTime('2016-06-24')));
+    /**
+     * @return array
+     */
+    public function incorrectDaysProvider()
+    {
+        return [
+            ['2000-06-23'],
+            ['2000-06-25'],
+            ['2016-06-24'],
+        ];
     }
 }

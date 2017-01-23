@@ -4,31 +4,36 @@ namespace JGI\SwedishDates\Tests\Date;
 
 use JGI\SwedishDates\Date\NationalDay;
 
-class NationalDayTest extends \PHPUnit_Framework_TestCase
+class NationalDayTest extends AbstractDayTest
 {
-    /**
-     * @test
-     */
-    public function nationalDayIsRed()
+    public function setUp()
     {
-        $nationalDay = new NationalDay();
-
-        $this->assertTrue($nationalDay->match(new \DateTime('2005-06-06')));
-        $this->assertTrue($nationalDay->match(new \DateTime('2010-06-06')));
-        $this->assertTrue($nationalDay->match(new \DateTime('2014-06-06')));
+        $this->day = new NationalDay();
     }
 
     /**
-     * @test
+     * @return array
      */
-    public function nonNationalDayIsNotRed()
+    public function correctDaysProvider()
     {
-        $nationalDay = new NationalDay();
+        return [
+            ['2005-06-06'],
+            ['2010-06-06'],
+            ['2014-06-06'],
+        ];
+    }
 
-        $this->assertFalse($nationalDay->match(new \DateTime('2004-06-06')));
-        $this->assertFalse($nationalDay->match(new \DateTime('2014-01-06')));
-        $this->assertFalse($nationalDay->match(new \DateTime('2014-06-07')));
-        $this->assertFalse($nationalDay->match(new \DateTime('2014-06-18')));
-        $this->assertFalse($nationalDay->match(new \DateTime('2014-12-24')));
+    /**
+     * @return array
+     */
+    public function incorrectDaysProvider()
+    {
+        return [
+            ['2004-06-06'],
+            ['2014-01-06'],
+            ['2014-06-07'],
+            ['2014-06-18'],
+            ['2014-12-24'],
+        ];
     }
 }

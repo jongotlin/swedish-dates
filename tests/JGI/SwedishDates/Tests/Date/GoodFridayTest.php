@@ -4,34 +4,17 @@ namespace JGI\SwedishDates\Tests\Date;
 
 use JGI\SwedishDates\Date\GoodFriday;
 
-class GoodFridayTest extends \PHPUnit_Framework_TestCase
+class GoodFridayTest extends AbstractDayTest
 {
-    /**
-     * @test
-     * @dataProvider goodFridayDaysProvider
-     */
-    public function goodFridayIsRed($date)
+    public function setUp()
     {
-        $goodFriday = new GoodFriday();
-
-        $this->assertTrue($goodFriday->match(new \DateTime($date)));
-    }
-
-    /**
-     * @test
-     * @dataProvider nonGoodFridayDaysProvider
-     */
-    public function nonGoodFridayIsNotRed($date)
-    {
-        $goodFriday = new GoodFriday();
-
-        $this->assertFalse($goodFriday->match(new \DateTime($date)));
+        $this->day = new GoodFriday();
     }
 
     /**
      * @return array
      */
-    public function goodFridayDaysProvider()
+    public function correctDaysProvider()
     {
         return [
             ['2014-04-18'],
@@ -51,7 +34,7 @@ class GoodFridayTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public function nonGoodFridayDaysProvider()
+    public function incorrectDaysProvider()
     {
         return [
             ['2014-04-20'],

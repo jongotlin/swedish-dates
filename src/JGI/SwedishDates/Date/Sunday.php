@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types=1);
+
 namespace JGI\SwedishDates\Date;
 
 class Sunday implements DayInterface
@@ -7,7 +9,7 @@ class Sunday implements DayInterface
     /**
      * {@inheritdoc}
      */
-    public function match(\DateTime $datetime)
+    public function match(\DateTime $datetime): bool
     {
         return '7' == $datetime->format('N');
     }
@@ -15,7 +17,7 @@ class Sunday implements DayInterface
     /**
      * {@inheritdoc}
      */
-     public function isRed()
+     public function isRed(): bool
     {
         return true;
     }
@@ -23,7 +25,7 @@ class Sunday implements DayInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return null;
     }

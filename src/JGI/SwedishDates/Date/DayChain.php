@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types=1);
+
 namespace JGI\SwedishDates\Date;
 
 class DayChain
@@ -7,26 +9,21 @@ class DayChain
     /**
      * @var \JGI\SwedishDates\Date\DayInterface[]
      */
-    protected $day;
-
-    public function __construct()
-    {
-        $this->day = array();
-    }
+    protected $days = [];
 
     /**
      * @param \JGI\SwedishDates\Date\DayInterface $day
      */
-    public function addDay($day)
+    public function addDay(DayInterface $day)
     {
-        $this->day[] = $day;
+        $this->days[] = $day;
     }
 
     /**
      * @return \JGI\SwedishDates\Date\DayInterface[]
      */
-    public function getDays()
+    public function getDays(): array
     {
-        return $this->day;
+        return $this->days;
     }
 }

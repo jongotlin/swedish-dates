@@ -4,34 +4,17 @@ namespace JGI\SwedishDates\Tests\Date;
 
 use JGI\SwedishDates\Date\AllSaintsDay;
 
-class AllSaintsDayTest extends \PHPUnit_Framework_TestCase
+class AllSaintsDayTest extends AbstractDayTest
 {
-    /**
-     * @test
-     * @dataProvider allSaintsDayProvider
-     */
-    public function allSaintsDayIsRed($date)
+    public function setUp()
     {
-        $allSaintsDay = new AllSaintsDay();
-
-        $this->assertTrue($allSaintsDay->match(new \DateTime($date)));
-    }
-
-    /**
-     * @test
-     * @dataProvider nonAllSaintsDayProvider
-     */
-    public function nonAllSaintsDayIsNotRed($date)
-    {
-        $allSaintsDay = new AllSaintsDay();
-
-        $this->assertFalse($allSaintsDay->match(new \DateTime($date)));
+        $this->day = new AllSaintsDay();
     }
 
     /**
      * @return array
      */
-    public function allSaintsDayProvider()
+    public function correctDaysProvider()
     {
         return [
             ['2014-11-01'],
@@ -51,7 +34,7 @@ class AllSaintsDayTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public function nonAllSaintsDayProvider()
+    public function incorrectDaysProvider()
     {
         return [
             ['2014-11-02'],
