@@ -4,7 +4,7 @@ declare (strict_types=1);
 
 namespace JGI\SwedishDates\Date;
 
-class NewYearsDay implements DayInterface, DayOccurOnceAYearInterface
+class GoodFriday implements DayInterface, DayOccurOnceAYearInterface
 {
     /**
      * {@inheritdoc}
@@ -25,9 +25,17 @@ class NewYearsDay implements DayInterface, DayOccurOnceAYearInterface
     /**
      * {@inheritdoc}
      */
+    public function isHoliday(): bool
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getName(): string
     {
-        return 'Nyårsdagen';
+        return 'Långfredag';
     }
 
     /**
@@ -35,6 +43,10 @@ class NewYearsDay implements DayInterface, DayOccurOnceAYearInterface
      */
     public function getDateForYear(int $year)
     {
-        return new \DateTime(sprintf('%s-01-01', $year));
+        $datetime = new \DateTime();
+        $datetime->setTimestamp(easter_date($year));
+        $datetime->modify('-2 day');
+
+        return $datetime;
     }
 }

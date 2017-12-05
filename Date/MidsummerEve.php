@@ -4,7 +4,7 @@ declare (strict_types=1);
 
 namespace JGI\SwedishDates\Date;
 
-class EasterSunday implements DayInterface, DayOccurOnceAYearInterface
+class MidsummerEve implements DayInterface, DayOccurOnceAYearInterface
 {
     /**
      * {@inheritdoc}
@@ -19,6 +19,14 @@ class EasterSunday implements DayInterface, DayOccurOnceAYearInterface
      */
     public function isRed(): bool
     {
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isHoliday(): bool
+    {
         return true;
     }
 
@@ -27,7 +35,7 @@ class EasterSunday implements DayInterface, DayOccurOnceAYearInterface
      */
     public function getName(): string
     {
-        return 'Påskdagen';
+        return 'Midsommarafton';
     }
 
     /**
@@ -35,9 +43,12 @@ class EasterSunday implements DayInterface, DayOccurOnceAYearInterface
      */
     public function getDateForYear(int $year)
     {
-        $datetime = new \DateTime();
-        $datetime->setTimestamp(easter_date($year));
-
-        return $datetime;
+        foreach (range(0, 6) as $i) {
+            $datetime = new \DateTime(sprintf('%s-06-19', $year));
+            $datetime->modify(sprintf('+%d day', $i));
+            if ('5' == $datetime->format('N')) {
+                return $datetime;
+            }
+        }
     }
 }

@@ -12,4 +12,14 @@ interface DayInterface
      * @return bool
      */
     public function match(\DateTime $datetime): bool;
+
+    /**
+     * @return bool
+     */
+    public function isRed(): bool;
+
+    /**
+     * @return bool
+     */
+    public function isHoliday(): bool;
 }

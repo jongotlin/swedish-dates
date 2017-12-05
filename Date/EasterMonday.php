@@ -4,7 +4,7 @@ declare (strict_types=1);
 
 namespace JGI\SwedishDates\Date;
 
-class ChristmasDay implements DayInterface, DayOccurOnceAYearInterface
+class EasterMonday implements DayInterface, DayOccurOnceAYearInterface
 {
     /**
      * {@inheritdoc}
@@ -25,9 +25,17 @@ class ChristmasDay implements DayInterface, DayOccurOnceAYearInterface
     /**
      * {@inheritdoc}
      */
+    public function isHoliday(): bool
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getName(): string
     {
-        return 'Juldagen';
+        return 'Annandag påsk';
     }
 
     /**
@@ -35,6 +43,10 @@ class ChristmasDay implements DayInterface, DayOccurOnceAYearInterface
      */
     public function getDateForYear(int $year)
     {
-        return new \DateTime(sprintf('%s-12-25', $year));
+        $datetime = new \DateTime();
+        $datetime->setTimestamp(easter_date($year));
+        $datetime->modify('+1 day');
+
+        return $datetime;
     }
 }

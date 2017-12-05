@@ -25,8 +25,16 @@ class Sunday implements DayInterface
     /**
      * {@inheritdoc}
      */
+    public function isHoliday(): bool
+    {
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getName(): string
     {
-        return null;
+        return 'Söndag';
     }
 }
