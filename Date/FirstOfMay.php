@@ -4,7 +4,7 @@ declare (strict_types=1);
 
 namespace JGI\SwedishDates\Date;
 
-class MidsummerDay implements DayInterface, DayOccurOnceAYearInterface
+class FirstOfMay implements DayInterface, DayOccurOnceAYearInterface
 {
     /**
      * {@inheritdoc}
@@ -19,7 +19,15 @@ class MidsummerDay implements DayInterface, DayOccurOnceAYearInterface
      */
     public function isRed(): bool
     {
-        return false;
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isHoliday(): bool
+    {
+        return true;
     }
 
     /**
@@ -27,7 +35,7 @@ class MidsummerDay implements DayInterface, DayOccurOnceAYearInterface
      */
     public function getName(): string
     {
-        return 'Midsommardagen';
+        return 'Första maj';
     }
 
     /**
@@ -35,12 +43,6 @@ class MidsummerDay implements DayInterface, DayOccurOnceAYearInterface
      */
     public function getDateForYear(int $year)
     {
-        foreach (range(0, 6) as $i) {
-            $datetime = new \DateTime(sprintf('%s-06-19', $year));
-            $datetime->modify(sprintf('+%d day', $i));
-            if ('6' == $datetime->format('N')) {
-                return $datetime;
-            }
-        }
+        return new \DateTime(sprintf('%s-05-01', $year));
     }
 }

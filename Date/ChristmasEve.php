@@ -4,7 +4,7 @@ declare (strict_types=1);
 
 namespace JGI\SwedishDates\Date;
 
-class FirstOfMay implements DayInterface, DayOccurOnceAYearInterface
+class ChristmasEve implements DayInterface, DayOccurOnceAYearInterface
 {
     /**
      * {@inheritdoc}
@@ -25,9 +25,17 @@ class FirstOfMay implements DayInterface, DayOccurOnceAYearInterface
     /**
      * {@inheritdoc}
      */
+    public function isHoliday(): bool
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getName(): string
     {
-        return 'Första maj';
+        return 'Julafton';
     }
 
     /**
@@ -35,6 +43,6 @@ class FirstOfMay implements DayInterface, DayOccurOnceAYearInterface
      */
     public function getDateForYear(int $year)
     {
-        return new \DateTime(sprintf('%s-05-01', $year));
+        return new \DateTime(sprintf('%s-12-24', $year));
     }
 }

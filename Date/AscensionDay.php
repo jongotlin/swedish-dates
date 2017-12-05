@@ -4,7 +4,7 @@ declare (strict_types=1);
 
 namespace JGI\SwedishDates\Date;
 
-class MidsummerEve implements DayInterface, DayOccurOnceAYearInterface
+class AscensionDay implements DayInterface, DayOccurOnceAYearInterface
 {
     /**
      * {@inheritdoc}
@@ -19,7 +19,15 @@ class MidsummerEve implements DayInterface, DayOccurOnceAYearInterface
      */
     public function isRed(): bool
     {
-        return false;
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isHoliday(): bool
+    {
+        return true;
     }
 
     /**
@@ -27,7 +35,7 @@ class MidsummerEve implements DayInterface, DayOccurOnceAYearInterface
      */
     public function getName(): string
     {
-        return 'Midsommarafton';
+        return 'Kristi Himmelsfärdsdag';
     }
 
     /**
@@ -35,12 +43,10 @@ class MidsummerEve implements DayInterface, DayOccurOnceAYearInterface
      */
     public function getDateForYear(int $year)
     {
-        foreach (range(0, 6) as $i) {
-            $datetime = new \DateTime(sprintf('%s-06-19', $year));
-            $datetime->modify(sprintf('+%d day', $i));
-            if ('5' == $datetime->format('N')) {
-                return $datetime;
-            }
-        }
+        $datetime = new \DateTime();
+        $datetime->setTimestamp(easter_date($year));
+        $datetime->modify('+39 day');
+
+        return $datetime;
     }
 }

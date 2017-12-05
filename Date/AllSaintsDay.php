@@ -4,7 +4,7 @@ declare (strict_types=1);
 
 namespace JGI\SwedishDates\Date;
 
-class Epiphany implements DayInterface, DayOccurOnceAYearInterface
+class AllSaintsDay implements DayInterface, DayOccurOnceAYearInterface
 {
     /**
      * {@inheritdoc}
@@ -25,9 +25,17 @@ class Epiphany implements DayInterface, DayOccurOnceAYearInterface
     /**
      * {@inheritdoc}
      */
+    public function isHoliday(): bool
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getName(): string
     {
-        return 'Trettondagen';
+        return 'Alla helgons dag';
     }
 
     /**
@@ -35,6 +43,12 @@ class Epiphany implements DayInterface, DayOccurOnceAYearInterface
      */
     public function getDateForYear(int $year)
     {
-        return new \DateTime(sprintf('%s-01-06', $year));
+        foreach (range(0, 6) as $i) {
+            $datetime = new \DateTime(sprintf('%s-10-31', $year));
+            $datetime->modify(sprintf('+%d day', $i));
+            if ('6' == $datetime->format('N')) {
+                return $datetime;
+            }
+        }
     }
 }

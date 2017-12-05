@@ -4,7 +4,7 @@ declare (strict_types=1);
 
 namespace JGI\SwedishDates\Date;
 
-class BoxingDay implements DayInterface, DayOccurOnceAYearInterface
+class NewYearsDay implements DayInterface, DayOccurOnceAYearInterface
 {
     /**
      * {@inheritdoc}
@@ -25,9 +25,17 @@ class BoxingDay implements DayInterface, DayOccurOnceAYearInterface
     /**
      * {@inheritdoc}
      */
+    public function isHoliday(): bool
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getName(): string
     {
-        return 'Annandag jul';
+        return 'Nyårsdagen';
     }
 
     /**
@@ -35,6 +43,6 @@ class BoxingDay implements DayInterface, DayOccurOnceAYearInterface
      */
     public function getDateForYear(int $year)
     {
-        return new \DateTime(sprintf('%s-12-26', $year));
+        return new \DateTime(sprintf('%s-01-01', $year));
     }
 }
