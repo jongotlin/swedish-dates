@@ -2,7 +2,7 @@
     "name": "jgi/swedish-dates",
     "description": "Special dates in Sweden",
     "keywords": ["date", "sweden"],
-    "license": "Apache2",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "Jon Gotlin",
