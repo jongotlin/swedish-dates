@@ -34,12 +34,14 @@ abstract class AbstractDayTest extends \PHPUnit_Framework_TestCase
      * @test
      * @dataProvider correctDaysProvider
      */
-    public function returnsCorrectDate($date)
+    public function returnsCorrectDate($expected)
     {
-        $this->assertEquals(
-            $date,
-            $this->day->getDateForYear((int) (new \DateTime($date))->format('Y'))->format('Y-m-d')
-        );
+        $date = $this->day->getDateForYear((int) (new \DateTime($expected))->format('Y'));
+        if ($date) {
+            $date = $date->format('Y-m-d');
+        }
+
+        $this->assertEquals($expected, $date);
     }
 
     /**
