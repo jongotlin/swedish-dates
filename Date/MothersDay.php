@@ -35,7 +35,7 @@ class MothersDay implements DayInterface, DayOccurOnceAYearInterface
      */
     public function getName(): string
     {
-        return 'Sommartid slutar';
+        return 'Mors dag';
     }
 
     /**
