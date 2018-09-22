@@ -5,7 +5,7 @@ namespace JGI\SwedishDates\Model;
 class Date
 {
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      */
     protected $dateTime;
 
@@ -20,9 +20,9 @@ class Date
     protected $name;
 
     /**
-     * @param \DateTime $dateTime
+     * @param \DateTimeInterface $dateTime
      */
-    public function __construct(\DateTime $dateTime)
+    public function __construct(\DateTimeInterface $dateTime)
     {
         $this->dateTime = $dateTime;
         $this->redDay = false;
@@ -46,7 +46,7 @@ class Date
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTimeInterface
      */
     public function getDateTime()
     {

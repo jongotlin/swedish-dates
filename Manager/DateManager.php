@@ -21,11 +21,11 @@ class DateManager
     }
 
     /**
-     * @param \DateTime $dateTime
+     * @param \DateTimeInterface $dateTime
      *
      * @return \JGI\SwedishDates\Model\Date
      */
-    public function getDate(\DateTime $dateTime)
+    public function getDate(\DateTimeInterface $dateTime)
     {
         $date = new Date($dateTime);
         $this->loadDay($date);
