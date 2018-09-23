@@ -40,10 +40,18 @@ class DateManager
     {
         foreach ($this->dayChain->getDays() as $day) {
             if ($day->match($date->getDateTime())) {
-                $date->setRedDay($day->isRed());
-                $date->setName($day->getName());
-
-                return;
+                if (!$date->getName()) {
+                    $date->setName($day->getName());
+                }
+                if ($day->isRed()) {
+                    $date->setRedDay(true);
+                }
+                if ($day->isHoliday()) {
+                    $date->setHoliday(true);
+                }
+                if ($date->isRedDay() && $date->isHoliday()) {
+                    return;
+                }
             }
         }
     }

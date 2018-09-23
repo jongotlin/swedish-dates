@@ -27,6 +27,7 @@ class Date
         $this->dateTime = $dateTime;
         $this->redDay = false;
         $this->name = null;
+        $this->holiday = false;
     }
 
     /**
@@ -67,5 +68,21 @@ class Date
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHoliday()
+    {
+        return $this->holiday;
+    }
+
+    /**
+     * @param bool $holiday
+     */
+    public function setHoliday($holiday)
+    {
+        $this->holiday = $holiday;
     }
 }
