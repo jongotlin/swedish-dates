@@ -15,9 +15,9 @@ class Date
     protected $redDay;
 
     /**
-     * @var string|null
+     * @var string[]
      */
-    protected $name;
+    protected $names;
 
     /**
      * @param \DateTimeInterface $dateTime
@@ -26,7 +26,7 @@ class Date
     {
         $this->dateTime = $dateTime;
         $this->redDay = false;
-        $this->name = null;
+        $this->names = [];
         $this->holiday = false;
     }
 
@@ -59,7 +59,11 @@ class Date
      */
     public function getName()
     {
-        return $this->name;
+        if (count($this->names) == 0) {
+            return null;
+        }
+
+        return implode(', ', $this->names);
     }
 
     /**
@@ -67,7 +71,15 @@ class Date
      */
     public function setName($name)
     {
-        $this->name = $name;
+        $this->names = [$name];
+    }
+
+    /**
+     * @param null|string $name
+     */
+    public function addName($name)
+    {
+        $this->names[] = $name;
     }
 
     /**

@@ -40,9 +40,7 @@ class DateManager
     {
         foreach ($this->dayChain->getDays() as $day) {
             if ($day->match($date->getDateTime())) {
-                if (!$date->getName()) {
-                    $date->setName($day->getName());
-                }
+                $date->addName($day->getName());
                 if ($day->isRed()) {
                     $date->setRedDay(true);
                 }
