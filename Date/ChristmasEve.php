@@ -19,7 +19,7 @@ class ChristmasEve implements DayInterface, DayOccurOnceAYearInterface
      */
     public function isRed(): bool
     {
-        return true;
+        return false;
     }
 
     /**
