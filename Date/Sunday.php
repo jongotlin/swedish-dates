@@ -4,7 +4,7 @@ declare (strict_types=1);
 
 namespace JGI\SwedishDates\Date;
 
-class Sunday implements DayInterface
+class Sunday implements DayInterface, UseIfNoOtherNameExistInterface
 {
     /**
      * {@inheritdoc}
