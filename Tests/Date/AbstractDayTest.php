@@ -4,8 +4,9 @@ namespace JGI\SwedishDates\Tests\Date;
 
 use JGI\SwedishDates\Date\DayInterface;
 use JGI\SwedishDates\Date\DayOccurOnceAYearInterface;
+use PHPUnit\Framework\TestCase;
 
-abstract class AbstractDayTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractDayTest extends TestCase
 {
     /**
      * @var DayInterface|DayOccurOnceAYearInterface

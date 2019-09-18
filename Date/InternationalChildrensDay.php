@@ -43,6 +43,9 @@ class InternationalChildrensDay implements DayInterface, DayOccurOnceAYearInterf
      */
     public function getDateForYear(int $year)
     {
-        return new \DateTime(sprintf('%s-10-01', $year));
+        $date = new \DateTime(sprintf('%s-09-30', $year));
+        $date->modify('next monday');
+
+        return $date;
     }
 }
