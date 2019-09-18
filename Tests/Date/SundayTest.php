@@ -3,8 +3,9 @@
 namespace JGI\SwedishDates\Tests\Date;
 
 use JGI\SwedishDates\Date\Sunday;
+use PHPUnit\Framework\TestCase;
 
-class SundayTest extends \PHPUnit_Framework_TestCase
+class SundayTest extends TestCase
 {
     /**
      * @test
