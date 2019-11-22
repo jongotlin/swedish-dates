@@ -44,7 +44,7 @@ class MidsummerDay implements DayInterface, DayOccurOnceAYearInterface
     public function getDateForYear(int $year)
     {
         foreach (range(0, 6) as $i) {
-            $datetime = new \DateTime(sprintf('%s-06-19', $year));
+            $datetime = new \DateTime(sprintf('%s-06-20', $year));
             $datetime->modify(sprintf('+%d day', $i));
             if ('6' == $datetime->format('N')) {
                 return $datetime;
