@@ -19,7 +19,7 @@ class MidsummerDay implements DayInterface, DayOccurOnceAYearInterface
      */
     public function isRed(): bool
     {
-        return false;
+        return true;
     }
 
     /**
