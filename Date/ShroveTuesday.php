@@ -35,7 +35,7 @@ class ShroveTuesday implements DayInterface, DayOccurOnceAYearInterface
      */
     public function getName(): string
     {
-        return 'Fettisdagen';
+        return 'Fettisdag';
     }
 
     /**
