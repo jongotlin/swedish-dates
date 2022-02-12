@@ -45,11 +45,15 @@ class DaylightSavingTimeStop implements DayInterface, DayOccurOnceAYearInterface
     {
         $checkDate = \DateTime::createFromFormat('Y-m-d H:i:s', sprintf('%s-11-01 00:00:00', (string) $year));
 
-        while (true) {
+        foreach (range(1, 20) as $i) {
             $checkDate->modify('-1 day');
             if ((int) $checkDate->format('I') == 1) {
                 return $checkDate;
             }
         }
+
+        throw new \LogicException(
+            sprintf('Timezone %s does not support daylight savings.', date_default_timezone_get())
+        );
     }
 }
