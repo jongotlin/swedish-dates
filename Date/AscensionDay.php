@@ -35,7 +35,7 @@ class AscensionDay implements DayInterface, DayOccurOnceAYearInterface
      */
     public function getName(): string
     {
-        return 'Kristi Himmelsfärdsdag';
+        return 'Kristi himmelsfärdsdag';
     }
 
     /**
